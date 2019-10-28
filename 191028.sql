@@ -55,7 +55,7 @@ CREATE TABLE `admin_operation_log` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `admin_operation_log_user_id_index` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `admin_operation_log` */
 
@@ -77,7 +77,17 @@ insert  into `admin_operation_log`(`id`,`user_id`,`path`,`method`,`ip`,`input`,`
 (15,1,'admin','GET','172.17.0.1','[]','2019-10-28 00:47:16','2019-10-28 00:47:16'),
 (16,1,'admin','GET','172.17.0.1','[]','2019-10-28 00:52:38','2019-10-28 00:52:38'),
 (17,1,'admin/auth/users','GET','172.17.0.1','{\"_pjax\":\"#pjax-container\"}','2019-10-28 00:52:44','2019-10-28 00:52:44'),
-(18,1,'admin','GET','172.17.0.1','[]','2019-10-28 00:55:39','2019-10-28 00:55:39');
+(18,1,'admin','GET','172.17.0.1','[]','2019-10-28 00:55:39','2019-10-28 00:55:39'),
+(19,1,'admin','GET','172.17.0.1','[]','2019-10-28 03:31:16','2019-10-28 03:31:16'),
+(20,1,'admin','GET','172.17.0.1','[]','2019-10-28 03:31:28','2019-10-28 03:31:28'),
+(21,1,'admin','GET','172.17.0.1','{\"_pjax\":\"#pjax-container\"}','2019-10-28 03:31:43','2019-10-28 03:31:43'),
+(22,1,'admin/auth/users','GET','172.17.0.1','{\"_pjax\":\"#pjax-container\"}','2019-10-28 03:31:48','2019-10-28 03:31:48'),
+(23,1,'admin/auth/roles','GET','172.17.0.1','{\"_pjax\":\"#pjax-container\"}','2019-10-28 03:32:06','2019-10-28 03:32:06'),
+(24,1,'admin/auth/permissions','GET','172.17.0.1','{\"_pjax\":\"#pjax-container\"}','2019-10-28 03:32:13','2019-10-28 03:32:13'),
+(25,1,'admin/auth/menu','GET','172.17.0.1','{\"_pjax\":\"#pjax-container\"}','2019-10-28 03:32:23','2019-10-28 03:32:23'),
+(26,1,'admin','GET','172.17.0.1','[]','2019-10-28 03:50:55','2019-10-28 03:50:55'),
+(27,1,'admin/auth/logout','GET','172.17.0.1','{\"_pjax\":\"#pjax-container\"}','2019-10-28 03:51:07','2019-10-28 03:51:07'),
+(28,1,'admin','GET','172.17.0.1','[]','2019-10-28 03:51:48','2019-10-28 03:51:48');
 
 /*Table structure for table `admin_permissions` */
 
@@ -210,7 +220,156 @@ CREATE TABLE `admin_users` (
 /*Data for the table `admin_users` */
 
 insert  into `admin_users`(`id`,`username`,`password`,`name`,`avatar`,`remember_token`,`created_at`,`updated_at`) values 
-(1,'admin','$2y$10$ONXUG7/bU6g4Fm0AE78zdeMPCLLOMPhawxGMPuFOh16akdJpd.KRO','Administrator',NULL,'Idqctep6FQ0Ug0nxxCqYbbyUPq4k7xlFOICX2Q3IovYdLwmnkuj4WjfVj9fC','2019-10-25 09:27:08','2019-10-25 09:27:08');
+(1,'admin','$2y$10$ONXUG7/bU6g4Fm0AE78zdeMPCLLOMPhawxGMPuFOh16akdJpd.KRO','Administrator',NULL,'fYauHJuEGaaCMSR0USao0nb2ppfzKYBFxHN8QiNwCY6kRSP57GkHgpQAtpn1','2019-10-25 09:27:08','2019-10-25 09:27:08');
+
+/*Table structure for table `canvas_posts` */
+
+DROP TABLE IF EXISTS `canvas_posts`;
+
+CREATE TABLE `canvas_posts` (
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `summary` text COLLATE utf8mb4_unicode_ci,
+  `body` text COLLATE utf8mb4_unicode_ci,
+  `published_at` datetime NOT NULL DEFAULT '2018-10-12 00:00:00',
+  `featured_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `featured_image_caption` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `meta` json DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `canvas_posts_slug_unique` (`slug`),
+  KEY `canvas_posts_user_id_index` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `canvas_posts` */
+
+insert  into `canvas_posts`(`id`,`slug`,`title`,`summary`,`body`,`published_at`,`featured_image`,`featured_image_caption`,`user_id`,`meta`,`created_at`,`updated_at`,`deleted_at`) values 
+('166d014a-13d2-473f-b3f2-50fc59ab0cdf','post-166d014a-13d2-473f-b3f2-50fc59ab0cdf','Repudiandae illo voluptatem','Delectus velit quibusdam illum voluptatem et ut quaerat pariatur.','Why, I haven\'t been invited yet.\' \'You\'ll see me there,\' said the Cat. \'I said pig,\' replied Alice; \'and I wish you wouldn\'t have come here.\' Alice didn\'t think that proved it at all,\' said the King. Here one of them at dinn--\' she checked herself hastily. \'I thought you did,\' said the Hatter. Alice felt dreadfully puzzled. The Hatter\'s remark seemed to rise like a snout than a pig, and she tried to speak, but for a baby: altogether Alice did not dare to disobey, though she looked up and.','2019-10-28 03:47:07','https://source.unsplash.com/random/640x480','Repudiandae illo voluptatem','1',NULL,'2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('315711ab-825c-4011-a3b4-d702a7ad81d4','post-315711ab-825c-4011-a3b4-d702a7ad81d4','Est libero cumque','Itaque nostrum sed ut debitis laborum ex aut.','The miserable Hatter dropped his teacup and bread-and-butter, and went down on the spot.\' This did not much surprised at her hands, wondering if anything would EVER happen in a coaxing tone, and everybody else. \'Leave off that!\' screamed the Gryphon. \'It\'s all her knowledge of history, Alice had no idea what Latitude was, or Longitude either, but thought they were playing the Queen furiously, throwing an inkstand at the flowers and those cool fountains, but she could see, when she found to be.','2019-10-28 03:47:07','https://source.unsplash.com/random/640x480','Est libero cumque','1',NULL,'2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('4fb97e7b-c628-4b15-8e58-49c1cff500ac','post-4fb97e7b-c628-4b15-8e58-49c1cff500ac','Et sapiente ipsa','Quos facere qui doloribus vitae et.','THE.','2019-10-28 03:47:07','https://source.unsplash.com/random/640x480','Et sapiente ipsa','1',NULL,'2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('699a774a-b597-4461-a3a2-92a3ef8402b6','post-699a774a-b597-4461-a3a2-92a3ef8402b6','Rerum et voluptatibus','Voluptas voluptas quia nulla sit laboriosam enim.','Alice crouched down among the bright flower-beds and the little golden key in the distance, and she tried to beat time when I was sent for.\' \'You ought to tell him. \'A nice muddle their slates\'ll be in Bill\'s place for a minute, trying to fix on one, the cook was busily stirring the soup, and seemed to be two people! Why, there\'s hardly room to grow to my right size: the next witness would be quite as safe to stay with it as she was surprised to see that queer little toss of her childhood: and.','2019-10-28 03:47:07','https://source.unsplash.com/random/640x480','Rerum et voluptatibus','1',NULL,'2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('7b6c3a67-fed0-41b2-b4ff-c82166c1c9bf','post-7b6c3a67-fed0-41b2-b4ff-c82166c1c9bf','Quis incidunt voluptas','Officiis eius est itaque repellat.','I do wonder what they\'ll do well enough; don\'t be nervous, or I\'ll have you executed, whether you\'re nervous or not.\' \'I\'m a poor man, your Majesty,\' the Hatter grumbled: \'you shouldn\'t have put it right; \'not that it signifies much,\' she said this, she was peering about anxiously among the leaves, which she found her head made her look up in spite of all her fancy, that: he hasn\'t got no sorrow, you know. Come on!\' \'Everybody says \"come on!\" here,\' thought Alice, as she couldn\'t answer either.','2019-10-28 03:47:07','https://source.unsplash.com/random/640x480','Quis incidunt voluptas','1',NULL,'2019-10-28 03:47:07','2019-10-28 03:47:07',NULL);
+
+/*Table structure for table `canvas_posts_tags` */
+
+DROP TABLE IF EXISTS `canvas_posts_tags`;
+
+CREATE TABLE `canvas_posts_tags` (
+  `post_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tag_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  UNIQUE KEY `canvas_posts_tags_post_id_tag_id_unique` (`post_id`,`tag_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `canvas_posts_tags` */
+
+insert  into `canvas_posts_tags`(`post_id`,`tag_id`) values 
+('166d014a-13d2-473f-b3f2-50fc59ab0cdf','f01fe11e-82c6-4b34-a147-88874e8853c4'),
+('315711ab-825c-4011-a3b4-d702a7ad81d4','605b5269-4dea-4d96-bdac-881e6ed9435d'),
+('4fb97e7b-c628-4b15-8e58-49c1cff500ac','c1447166-4fba-4030-a1a6-d486930da78b'),
+('4fb97e7b-c628-4b15-8e58-49c1cff500ac','d7087b38-f46f-4529-9479-890cafe003f1'),
+('4fb97e7b-c628-4b15-8e58-49c1cff500ac','f01fe11e-82c6-4b34-a147-88874e8853c4'),
+('699a774a-b597-4461-a3a2-92a3ef8402b6','f01fe11e-82c6-4b34-a147-88874e8853c4'),
+('7b6c3a67-fed0-41b2-b4ff-c82166c1c9bf','86262728-dd2b-47d1-8b4b-abdb36614504');
+
+/*Table structure for table `canvas_posts_topics` */
+
+DROP TABLE IF EXISTS `canvas_posts_topics`;
+
+CREATE TABLE `canvas_posts_topics` (
+  `post_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `topic_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  UNIQUE KEY `canvas_posts_topics_post_id_topic_id_unique` (`post_id`,`topic_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `canvas_posts_topics` */
+
+insert  into `canvas_posts_topics`(`post_id`,`topic_id`) values 
+('166d014a-13d2-473f-b3f2-50fc59ab0cdf','c9924503-ec10-49d2-b0db-dc9c785d70be'),
+('315711ab-825c-4011-a3b4-d702a7ad81d4','1ceac9f2-d105-4dce-ab30-46f0f534d7da'),
+('4fb97e7b-c628-4b15-8e58-49c1cff500ac','2b241f7e-970f-41cc-bc12-94b112e4d936'),
+('699a774a-b597-4461-a3a2-92a3ef8402b6','827675db-c329-42fb-a8ab-b6ab027ee4e9'),
+('7b6c3a67-fed0-41b2-b4ff-c82166c1c9bf','084fcf53-2af5-458b-a5fc-1324a62fbce2');
+
+/*Table structure for table `canvas_tags` */
+
+DROP TABLE IF EXISTS `canvas_tags`;
+
+CREATE TABLE `canvas_tags` (
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `canvas_tags_slug_unique` (`slug`),
+  KEY `canvas_tags_created_at_index` (`created_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `canvas_tags` */
+
+insert  into `canvas_tags`(`id`,`slug`,`name`,`created_at`,`updated_at`,`deleted_at`) values 
+('09f824dc-71dd-4fb9-ad03-bc878ba250d8','voluptatem-quis','Voluptatem quis','2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('605b5269-4dea-4d96-bdac-881e6ed9435d','ipsam-aut','Ipsam aut','2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('66889e6c-4e86-4e25-a810-f846da4f076e','tempora-voluptas','Tempora voluptas','2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('86262728-dd2b-47d1-8b4b-abdb36614504','odit-occaecati','Odit occaecati','2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('c1447166-4fba-4030-a1a6-d486930da78b','voluptas-provident','Voluptas provident','2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('d36925a1-63b0-4f95-8250-8d7d88e199f4','perferendis-saepe','Perferendis saepe','2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('d7087b38-f46f-4529-9479-890cafe003f1','et-vel','Et vel','2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('f01fe11e-82c6-4b34-a147-88874e8853c4','est-doloribus','Est doloribus','2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('f8d32884-44c8-49b5-8600-acedb43d48fb','totam-soluta','Totam soluta','2019-10-28 03:47:07','2019-10-28 03:47:07',NULL);
+
+/*Table structure for table `canvas_topics` */
+
+DROP TABLE IF EXISTS `canvas_topics`;
+
+CREATE TABLE `canvas_topics` (
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `canvas_topics_slug_unique` (`slug`),
+  KEY `canvas_topics_created_at_index` (`created_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `canvas_topics` */
+
+insert  into `canvas_topics`(`id`,`slug`,`name`,`created_at`,`updated_at`,`deleted_at`) values 
+('084fcf53-2af5-458b-a5fc-1324a62fbce2','unde-fugit','Unde fugit','2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('1ceac9f2-d105-4dce-ab30-46f0f534d7da','adipisci-nobis','Adipisci nobis','2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('2b241f7e-970f-41cc-bc12-94b112e4d936','neque-ut','Neque ut','2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('4e49e1a2-95d1-4026-bfca-1d91e315708e','aut-et','Aut et','2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('827675db-c329-42fb-a8ab-b6ab027ee4e9','error-nemo','Error nemo','2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('902c97de-3abb-4da7-a4b2-46e1d0de81b2','recusandae-non','Recusandae non','2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('9428c73a-65e1-4c81-bdb1-3b7bf7be66a5','molestiae-et','Molestiae et','2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('aa9c8ab7-2a9e-4bde-8376-8859565d93e3','neque-placeat','Neque placeat','2019-10-28 03:47:07','2019-10-28 03:47:07',NULL),
+('c9924503-ec10-49d2-b0db-dc9c785d70be','laudantium-maiores','Laudantium maiores','2019-10-28 03:47:07','2019-10-28 03:47:07',NULL);
+
+/*Table structure for table `canvas_views` */
+
+DROP TABLE IF EXISTS `canvas_views`;
+
+CREATE TABLE `canvas_views` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `post_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `agent` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `referer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `post_id` (`post_id`),
+  KEY `created_at` (`created_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `canvas_views` */
 
 /*Table structure for table `failed_jobs` */
 
@@ -237,7 +396,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `migrations` */
 
@@ -245,7 +404,10 @@ insert  into `migrations`(`id`,`migration`,`batch`) values
 (1,'2014_10_12_000000_create_users_table',1),
 (2,'2014_10_12_100000_create_password_resets_table',1),
 (3,'2019_08_19_000000_create_failed_jobs_table',1),
-(4,'2016_01_04_173148_create_admin_tables',2);
+(4,'2016_01_04_173148_create_admin_tables',2),
+(5,'2018_10_12_000000_create_canvas_tables',3),
+(6,'2019_02_16_000000_create_canvas_topics_tables',3),
+(7,'2019_03_05_000000_add_indexes_to_canvas_views',3);
 
 /*Table structure for table `password_resets` */
 
