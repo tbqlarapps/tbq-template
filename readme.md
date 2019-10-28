@@ -4,3 +4,4 @@ https://github.com/z-song/laravel-admin
 
 登录: admin/admin
 
+http://tbq-laravel.com:10080/admin
