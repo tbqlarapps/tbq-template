@@ -1,7 +1,7 @@
 {
     "name": "tbqlarapps/tbq-template",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "The Laravel Framework. 集成了jwt, admin后台",
     "keywords": [
         "framework",
         "laravel"
