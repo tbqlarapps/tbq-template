@@ -17,6 +17,8 @@ Route::group(['prefix' => 'v1'], function () {
         return 'Hello World';
     });
 });
+
+Auth::routes();
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
