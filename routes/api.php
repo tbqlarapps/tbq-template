@@ -24,9 +24,9 @@ Route::group(['prefix' => 'v1'], function () {
             Route::post('register', 'UserController@register');
             Route::post('login', 'UserController@login');
         });
-        // Route::prefix('admin')->namespace('Admin')->middleware('auth:admins')->group(function () {
-        //     Route::get('/', 'HomeController@index'); //后台首页
-        // });
+        Route::prefix('user')->middleware('auth:api')->group(function () {
+            Route::get('/', 'UserController@index'); //用户信息
+        });
     });
 });
 

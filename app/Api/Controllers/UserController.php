@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:admins', ['except' => ['register', 'login']]);
+        $this->middleware('auth:api', ['except' => ['register', 'login']]);
     }
 
     /***
@@ -118,5 +118,10 @@ class UserController extends Controller
             'token_type' => 'Bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60,
         ]);
+    }
+
+    public function index()
+    {
+        return response()->json(auth('api')->user());
     }
 }
