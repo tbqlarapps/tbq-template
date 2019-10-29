@@ -8,7 +8,7 @@
  */
 
 define('LARAVEL_START', microtime(true));
-define('ONLY_API', false);
+define('ONLY_API', true);
 
 /*
 |--------------------------------------------------------------------------
